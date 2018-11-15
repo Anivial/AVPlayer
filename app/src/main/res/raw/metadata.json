@@ -1,0 +1,29 @@
+{
+  "chapters":
+    [
+      {
+        "name" : "INTRO",
+        "time" : 0
+      },
+      {
+        "name" : "TITLE",
+        "time" : 24
+      },
+      {
+        "name" : "AGGRESSION",
+        "time" : 153
+      },
+      {
+        "name" : "PREPARATION",
+        "time" : 240
+      },
+      {
+        "name" : "VENDETTA",
+        "time" : 300
+      },
+      {
+        "name" : "CREDITS",
+        "time" : 490
+      }
+    ]
+}
