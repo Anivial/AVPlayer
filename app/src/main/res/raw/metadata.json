@@ -4,7 +4,7 @@
       {
         "name" : "INTRO",
         "time" : 0,
-        "url": "https://www.google.fr"
+        "url": "https://fr.wikipedia.org/wiki/Introduction"
       },
       {
         "name" : "TITLE",
@@ -13,19 +13,23 @@
       },
       {
         "name" : "AGGRESSION",
-        "time" : 153
+        "time" : 153,
+        "url": "https://fr.wikipedia.org/wiki/Agression"
       },
       {
         "name" : "PREPARATION",
-        "time" : 240
+        "time" : 240,
+        "url": "https://fr.wikipedia.org/wiki/Pr%C3%A9paration"
       },
       {
         "name" : "VENDETTA",
-        "time" : 300
+        "time" : 300,
+        "url": "https://fr.wikipedia.org/wiki/V_pour_Vendetta_(film)"
       },
       {
         "name" : "CREDITS",
-        "time" : 490
+        "time" : 490,
+        "url": "https://fr.wikipedia.org/wiki/G%C3%A9n%C3%A9rique_(%C5%93uvre)"
       }
     ]
 }

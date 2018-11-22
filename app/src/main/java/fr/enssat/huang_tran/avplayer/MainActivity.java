@@ -1,5 +1,7 @@
 package fr.enssat.huang_tran.avplayer;
 
+import android.arch.lifecycle.ViewModelProvider;
+import android.arch.lifecycle.ViewModelProviders;
 import android.graphics.Color;
 import android.media.MediaPlayer;
 import android.net.Uri;
@@ -29,6 +31,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class MainActivity extends AppCompatActivity {
+    private VideoViewModel videoViewModel;
 
     VideoView videoView;
     WebView webView;
@@ -40,12 +43,28 @@ public class MainActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+
         setContentView(R.layout.activity_main);
         parseJson();
         initVideoView();
         initWebView();
         initChapters();
         initThread();
+
+        videoViewModel = ViewModelProviders.of(this).get(VideoViewModel.class);
+    }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+        videoView.seekTo(videoViewModel.getPosition().getValue());
+        videoView.start();
+    }
+
+    @Override
+    protected void onPause() {
+        super.onPause();
+        videoViewModel.setPosition(videoView.getCurrentPosition());
     }
 
     @Override
@@ -134,7 +153,6 @@ public class MainActivity extends AppCompatActivity {
                 do{
                     int current = videoView.getCurrentPosition();
                     updateChapters(current);
-                    updateWiki(current);
                     try {
                         Thread.sleep(500);
                     } catch (InterruptedException e) {
@@ -163,32 +181,28 @@ public class MainActivity extends AppCompatActivity {
                             buttons.get(j).setTextColor(Color.BLACK);
                         }
                     }
-                } catch (Exception e){
+                    if(!(pre==button)){
+                        System.out.println("pre : " + pre);
+                        System.out.println("number : " + button);
+                        final int temp = button;
+                        webView.post(new Runnable() {
+                            @Override
+                            public void run() {
+                                try {
+                                    webView.loadUrl(jsonChapters.getJSONObject(temp).getString("url"));
+                                } catch (Exception e){
 
+                                }
+                            }
+                        });
+                        pre = button;
+                    }
+                } catch (Exception e){
                 }
             }
 
-            private void updateWiki(int current){
-                int number = jsonChapters.length()-1;
-                int i = 0;
-                boolean found = false;
-                try {
-                    while (!found && i<jsonChapters.length()-1){
-                        if (current < jsonChapters.getJSONObject(i+1).getInt("time")*1000 && current >= jsonChapters.getJSONObject(i).getInt("time")*1000) {
-                            number = i;
-                            found = true;
-                        }
-                        i++;
-                    }
-                    if(number != pre){
-                        webView.loadUrl(jsonChapters.getJSONObject(number).getString("url"));
-                        pre = number;
-                    }
-                } catch (Exception e){
-
-                }
-            }
         });
         thread.start();
     }
+
 }
