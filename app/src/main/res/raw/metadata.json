@@ -3,11 +3,13 @@
     [
       {
         "name" : "INTRO",
-        "time" : 0
+        "time" : 0,
+        "url": "https://www.google.fr"
       },
       {
         "name" : "TITLE",
-        "time" : 24
+        "time" : 24,
+        "url": "https://en.wikipedia.org/wiki/Big_Buck_Bunny"
       },
       {
         "name" : "AGGRESSION",
