@@ -101,7 +101,6 @@ public class MainActivity extends AppCompatActivity {
         webSettings.setJavaScriptEnabled(true);
         webSettings.setDomStorageEnabled(true);
         webView.setOverScrollMode(webView.OVER_SCROLL_NEVER);
-        webView.loadUrl("https://en.wikipedia.org/wiki/Big_Buck_Bunny");
     }
 
     private void initChapters(){
