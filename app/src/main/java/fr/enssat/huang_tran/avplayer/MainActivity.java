@@ -1,13 +1,10 @@
 package fr.enssat.huang_tran.avplayer;
 
-import android.arch.lifecycle.ViewModelProvider;
 import android.arch.lifecycle.ViewModelProviders;
 import android.graphics.Color;
-import android.media.MediaPlayer;
 import android.net.Uri;
-import android.os.AsyncTask;
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.view.ViewGroup;
 import android.webkit.WebSettings;
@@ -71,7 +68,6 @@ public class MainActivity extends AppCompatActivity {
     protected void onDestroy() {
         super.onDestroy();
         thread.interrupt();
-
     }
 
     private void parseJson(){
@@ -91,7 +87,6 @@ public class MainActivity extends AppCompatActivity {
         mediaController.setAnchorView(videoView);
         videoView.setMediaController(mediaController);
         videoView.start();
-
     }
 
     private void initWebView(){
@@ -125,7 +120,6 @@ public class MainActivity extends AppCompatActivity {
         } catch (Exception e) {
 
         }
-
     }
 
     private String getJson(){
@@ -181,8 +175,6 @@ public class MainActivity extends AppCompatActivity {
                         }
                     }
                     if(!(pre==button)){
-                        System.out.println("pre : " + pre);
-                        System.out.println("number : " + button);
                         final int temp = button;
                         webView.post(new Runnable() {
                             @Override
@@ -197,9 +189,9 @@ public class MainActivity extends AppCompatActivity {
                         pre = button;
                     }
                 } catch (Exception e){
+
                 }
             }
-
         });
         thread.start();
     }
